@@ -1,0 +1,18 @@
+shawnz@nano15:~/Lab5$ make
+/usr/local/cuda/bin/nvcc -c gpuSquare.cu -o gpuSquare.o
+mpicxx -c hello.c -o hello.o -I/usr/local/cuda/include
+mpicxx hello.o gpuSquare.o -o helloSquare -L/usr/local/cuda/lib64 -lcudart
+
+shawnz@nano15:~/Lab5$ mpirun -np 4 ./helloSquare
+Hello from processor 0 of 4
+Hello from processor 1 of 4
+Hello from processor 2 of 4
+Hello from processor 3 of 4
+Squares computed for processor number 0 of 4
+0 1 4 9 16 25 36 49 64 81
+Squares computed for processor number 1 of 4
+100 121 144 169 196 225 256 289 324 361
+Squares computed for processor number 2 of 4
+400 441 484 529 576 625 676 729 784 841
+Squares computed for processor number 3 of 4
+900 961 1024 1089 1156 1225 1296 1369 1444 1521
